@@ -4,6 +4,9 @@ import React from 'react';
 import { TabBarIcon } from '@/components/navigation/TabBarIcon';
 import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
+import { black200, black800 } from '@/utils/colors';
+import { StatusBar, Text, View } from 'react-native';
+import { chessLogo } from '@/utils/images';
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -13,22 +16,25 @@ export default function TabLayout() {
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
         headerShown: false,
+        tabBarShowLabel:false,
+        tabBarStyle:{
+          backgroundColor:black200
+        },
       }}>
       <Tabs.Screen
-        name="index"
+        name="play"
         options={{
-          title: 'Home',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
+          tabBarIcon: ({  focused }) => (
+            <TabBarIcon image={chessLogo} title="Play" focused={focused} />
           ),
-        }}
+        }
+      }
       />
       <Tabs.Screen
-        name="explore"
+        name="more"
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
+          tabBarIcon: ({  focused }) => (
+            <TabBarIcon image={chessLogo} title="More" focused={focused}/>
           ),
         }}
       />

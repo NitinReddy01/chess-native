@@ -1,9 +1,20 @@
-// You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
+import { green500 } from "@/utils/colors";
+import { chessLogo } from "@/utils/images";
+import { View, Text, Image, ImageSourcePropType } from "react-native";
 
-import Ionicons from '@expo/vector-icons/Ionicons';
-import { type IconProps } from '@expo/vector-icons/build/createIconSet';
-import { type ComponentProps } from 'react';
+interface TabBarIconProps {
+  title: string;
+  image:ImageSourcePropType;
+  focused: boolean;
+}
 
-export function TabBarIcon({ style, ...rest }: IconProps<ComponentProps<typeof Ionicons>['name']>) {
-  return <Ionicons size={28} style={[{ marginBottom: -3 }, style]} {...rest} />;
+export function TabBarIcon(props: TabBarIconProps) {
+  return (
+    <View style={{alignItems:'center'}} >
+      <Image source={props.image} style={{height:35,width:35,tintColor: props.focused ? green500 : "white"}} />
+      <Text style={{ color: props.focused ? green500 : "white", fontSize: 13 }}>
+        {props.title}
+      </Text>
+    </View>
+  );
 }
